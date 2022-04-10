@@ -3,6 +3,19 @@
     <v-card>
       <v-card-title>
         {{ $t('Personeller.Personellistesi') }}
+        <download-excel
+          :data="PersonellerListesi"
+          :name="$t('Personeller.PersonelExcelFileName')"
+          :worksheet="$t('Personeller.PersonelExcelFileName')"
+          :fields="ExcelFields"
+          :header="ExcelHeader"
+          class="ml-3"
+        >
+          <img
+            src="@/assets/images/misc/excel.png"
+            style="width: 25px"
+          />
+        </download-excel>
       </v-card-title>
     </v-card>
     <v-data-table
@@ -17,6 +30,20 @@
               <v-icon
                 color="primary"
                 dark
+                @click="PersonelDuzenle(item)"
+                v-on="on"
+              >
+                {{ icons.mdiPencil }}
+              </v-icon>
+            </template>
+            <span>{{ $t('Personeller.EditToolTip') }}</span>
+          </v-tooltip>
+
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon
+                color="primary"
+                dark
                 @click="PersonelDosyalar(item)"
                 v-on="on"
               >
@@ -25,6 +52,7 @@
             </template>
             <span>{{ $t('Personeller.DosyalarButtonTooltip') }}</span>
           </v-tooltip>
+
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-icon
@@ -55,7 +83,9 @@
 </template>
 <script>
 
-import { mdiCloudUpload, mdiCardAccountDetailsStar, mdiFilter } from '@mdi/js'
+import {
+  mdiCloudUpload, mdiCardAccountDetailsStar, mdiFilter, mdiPencil,
+} from '@mdi/js'
 import PersonelDetay from '@/views/personel/personel-detay'
 
 export default {
@@ -67,6 +97,7 @@ export default {
         mdiCloudUpload,
         mdiCardAccountDetailsStar,
         mdiFilter,
+        mdiPencil,
       },
       sutunlar: [
         { align: 'start', text: this.$t('Personeller.islem'), value: 'id' },
@@ -74,19 +105,22 @@ export default {
         { text: this.$t('Personeller.isim'), value: 'isim' },
         { text: this.$t('Personeller.soyisim'), value: 'soyisim' },
         { text: this.$t('Personeller.meslek_id'), value: 'meslek' },
+
         // { text: this.$t('Personeller.dogum_tarihi'), value: 'dogum_tarihi' },
         // { text: this.$t('Personeller.dogum_yeri'), value: 'dogum_yeri' },
         // { text: this.$t('Personeller.posta_kodu_id'), value: 'posta_kodu' },
         { text: this.$t('Personeller.sehir'), value: 'sehir' },
+
         // { text: this.$t('Personeller.ulke_id'), value: 'de' },
         // { text: this.$t('Personeller.cadde'), value: 'cadde' },
-        { text: this.$t('Personeller.meslek_id'), value: 'meslek' },
         { text: this.$t('Personeller.ise_giris_tarihi'), value: 'ise_giris_tarihi' },
         { text: this.$t('Personeller.sigorta_sirketi_id'), value: 'sigorta_sirketi' },
+
         // { text: this.$t('Personeller.kimlik_no'), value: 'kimlik_no' },
         // { text: this.$t('Personeller.sosyal_guvenlik_no'), value: 'sosyal_guvenlik_no' },
         { text: this.$t('Personeller.uyruk_id'), value: 'uyruk' },
         { text: this.$t('Personeller.telefon'), value: 'telefon' },
+
         // { text: this.$t('Personeller.kimlik_seri_no'), value: 'kimlik_seri_no' },
         // { text: this.$t('Personeller.kimlik_gecerlilik_tarihi'), value: 'kimlik_gecerlilik_tarihi' },
         // { text: this.$t('Personeller.pasaport_no'), value: 'pasaport_no' },
@@ -104,6 +138,23 @@ export default {
     }
   },
   computed: {
+    ExcelFields() {
+      let veri
+      const fields = { }
+      if (this.PersonellerListesi.length > 0) {
+        veri = Object.keys(this.PersonellerListesi[0])
+        veri.forEach(item => {
+          // eslint-disable-next-line no-unused-vars
+          const itemKey = this.$t(`Personeller.${item}`)
+          fields[itemKey] = item
+        })
+      }
+
+      return fields
+    },
+    ExcelHeader() {
+      return [this.$t('APP_NAME'), `${this.$t('tarih')}:${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`]
+    },
     PersonellerListesi() {
       return this.$store.state.Personeller.Personeller
     },

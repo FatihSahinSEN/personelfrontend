@@ -2,29 +2,17 @@
   <div>
     <v-card>
       <v-card-title class="text-uppercase">
-        {{ title }}
-        <v-btn
-          color="primary"
+        {{ $t('Dosyalar.dosya_listesi') }}
+        <download-excel
+          :data="Dosyalar"
+          :name="$t('Dosyalar.ExcelName')"
+          :worksheet="$t('Dosyalar.ExcelName')"
+          :fields="ExcelFields"
+          :header="ExcelHeader"
           class="ml-3"
-          dense
-          @click="DosyaYukle"
         >
-          <v-icon color="mr-3">
-            {{ icons.upload }}
-          </v-icon>
-            {{ $t('Dosyalar.dosya_yukle') }}
-        </v-btn>
-        <v-btn
-          color="primary"
-          class="ml-3"
-          dense
-          @click="DownloadAll"
-        >
-          <v-icon color="mr-3">
-            {{ icons.upload }}
-          </v-icon>
-            {{ $t('Dosyalar.tumunu_indir') }}
-        </v-btn>
+          <img src="@/assets/images/misc/excel.png" style="width: 25px" />
+        </download-excel>
       </v-card-title>
     </v-card>
     <v-data-table
@@ -97,17 +85,31 @@ export default {
           filterable: false,
           value: 'id',
         },
-        
+
         {
-          text: this.$t('Dosyalar.evrak_grup'),
-          value: 'evrak_grup',
+          text: this.$t('Dosyalar.personel_no'),
+          value: 'personel_no',
+        },
+
+        {
+          text: this.$t('Dosyalar.personel_isim'),
+          value: 'personel_isim',
+        },
+
+        {
+          text: this.$t('Dosyalar.personel_soyisim'),
+          value: 'personel_soyisim',
         },
 
         {
           text: this.$t('Dosyalar.evrak'),
           value: 'evrak',
         },
-        
+
+        {
+          text: this.$t('Dosyalar.evrak_grup'),
+          value: 'evrak_grup',
+        },
         {
           text: this.$t('Dosyalar.dosya_adi'),
           value: 'dosya_adi',
@@ -116,7 +118,7 @@ export default {
           text: this.$t('Dosyalar.dosya_boyutu'),
           value: 'dosya_boyutu',
         },
-        
+
         {
           text: this.$t('Dosyalar.bitis_tarihi'),
           value: 'bitis_tarihi',
@@ -187,9 +189,26 @@ export default {
     arama() {
       return this.$store.state.arama
     },
+    ExcelFields() {
+      let veri
+      const fields = { }
+      if (this.Dosyalar.length > 0) {
+        veri = Object.keys(this.Dosyalar[0])
+        veri.forEach(item => {
+          // eslint-disable-next-line no-unused-vars
+          const itemKey = this.$t(`Dosyalar.${item}`)
+          fields[itemKey] = item
+        })
+      }
+
+      return fields
+    },
+    ExcelHeader() {
+      return [this.$t('APP_NAME'), `${this.$t('tarih')}:${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`]
+    },
   },
   mounted() {
-    this.$store.dispatch('Action', { name: 'Dosyalar/DosyalarListesi', data: this.$route.params })
+    this.$store.dispatch('Action', { name: 'Dosyalar/TumDosyalar' })
   },
   methods: {
     // eslint-disable-next-line consistent-return

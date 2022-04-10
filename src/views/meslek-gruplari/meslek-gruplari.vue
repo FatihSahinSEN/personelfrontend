@@ -1,5 +1,20 @@
 <template>
   <div>
+    <v-card>
+      <v-card-title>
+        {{ $t('MeslekGruplari.MeslekGruplari') }}
+        <download-excel
+          :data="MeslekGruplariListesi"
+          :name="$t('MeslekGruplari.ExcelFile')"
+          :worksheet="$t('MeslekGruplari.ExcelFile')"
+          :fields="ExcelFields"
+          :header="ExcelHeader"
+          class="ml-3"
+        >
+          <img src="@/assets/images/misc/excel.png" style="width: 25px" />
+        </download-excel>
+      </v-card-title>
+    </v-card>
     <v-data-table
       :headers="sutunlar"
       :items="MeslekGruplariListesi"
@@ -64,6 +79,23 @@ export default {
     },
     arama() {
       return this.$store.state.arama
+    },
+    ExcelFields() {
+      let veri
+      const fields = { }
+      if (this.MeslekGruplariListesi.length > 0) {
+        veri = Object.keys(this.MeslekGruplariListesi[0])
+        veri.forEach(item => {
+          // eslint-disable-next-line no-unused-vars
+          const itemKey = this.$t(`MeslekGruplari.${item}`)
+          fields[itemKey] = item
+        })
+      }
+
+      return fields
+    },
+    ExcelHeader() {
+      return [this.$t('APP_NAME'), `${this.$t('tarih')}:${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`]
     },
   },
   mounted() {

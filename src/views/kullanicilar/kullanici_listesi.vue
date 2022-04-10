@@ -1,5 +1,20 @@
 <template>
   <div>
+    <v-card>
+      <v-card-title>
+        {{ $t('kullanicilar.kullanicilar') }}
+        <download-excel
+          :data="kullanici_listesi"
+          :name="$t('kullanicilar.ExcelFile')"
+          :worksheet="$t('kullanicilar.ExcelFile')"
+          :fields="ExcelFields"
+          :header="ExcelHeader"
+          class="ml-3"
+        >
+          <img src="@/assets/images/misc/excel.png" style="width: 25px" />
+        </download-excel>
+      </v-card-title>
+    </v-card>
     <v-data-table
       :headers="sutunlar"
       :items="kullanici_listesi"
@@ -90,6 +105,23 @@ export default {
     arama() {
       return this.$store.state.arama
     },
+    ExcelFields() {
+      let veri
+      const fields = { }
+      if (this.kullanici_listesi.length > 0) {
+        veri = Object.keys(this.kullanici_listesi[0])
+        veri.forEach(item => {
+          // eslint-disable-next-line no-unused-vars
+          const itemKey = this.$t(`kullanicilar.${item}`)
+          fields[itemKey] = item
+        })
+      }
+
+      return fields
+    },
+    ExcelHeader() {
+      return [this.$t('APP_NAME'), `${this.$t('tarih')}:${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`]
+    },
   },
   mounted() {
     // Kullanici Listesi Çek (store/kullanicilar.js)
@@ -97,7 +129,7 @@ export default {
   },
   methods: {
     edit(item) {
-      this.$router.push({ name: 'kullanici-guncelle', params: { id: item.id, user: item } })
+      this.$router.push({ name: 'kullanici-guncelle', params: { id: item.id, user: item, cancel: true } })
     },
   },
 }

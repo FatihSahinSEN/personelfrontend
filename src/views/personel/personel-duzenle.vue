@@ -222,76 +222,74 @@ export default {
       return ''
     },
     setForm() {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.form = [
+        {          type: 'text', data: this.$route.params.personel.personel_no, text: this.$t('Personeller.personel_no'), value: 'personel_no',        },
         {
-          type: 'text', data: this.$route.params.personel_no, text: this.$t('Personeller.personel_no'), value: 'personel_no',
+          type: 'text', data: this.$route.params.personel.isim, text: this.$t('Personeller.isim'), value: 'isim',
         },
         {
-          type: 'text', data: this.$route.params.isim, text: this.$t('Personeller.isim'), value: 'isim',
+          type: 'text', data: this.$route.params.personel.soyisim, text: this.$t('Personeller.soyisim'), value: 'soyisim',
         },
         {
-          type: 'text', data: this.$route.params.soyisim, text: this.$t('Personeller.soyisim'), value: 'soyisim',
+          type: 'date', data: this.Tarih(this.$route.params.personel.dogum_tarihi), text: this.$t('Personeller.dogum_tarihi'), value: 'dogum_tarihi',
         },
         {
-          type: 'date', data: this.Tarih(this.$route.params.dogum_tarihi), text: this.$t('Personeller.dogum_tarihi'), value: 'dogum_tarihi',
+          type: 'text', data: this.$route.params.personel.dogum_yeri, text: this.$t('Personeller.dogum_yeri'), value: 'dogum_yeri',
         },
         {
-          type: 'text', data: this.$route.params.dogum_yeri, text: this.$t('Personeller.dogum_yeri'), value: 'dogum_yeri',
+          type: 'text', data: this.$route.params.personel.telefon, text: this.$t('Personeller.telefon'), value: 'telefon',
         },
         {
-          type: 'text', data: this.$route.params.telefon, text: this.$t('Personeller.telefon'), value: 'telefon',
+          type: 'text', data: this.$route.params.personel.eposta, text: this.$t('Personeller.eposta'), value: 'eposta',
         },
         {
-          type: 'text', data: this.$route.params.eposta, text: this.$t('Personeller.eposta'), value: 'eposta',
+          type: 'meslek', data: this.$route.params.personel.meslek_id, text: this.$t('Personeller.meslek_id'), value: 'meslek_id',
         },
         {
-          type: 'meslek', data: this.$route.params.meslek_id, text: this.$t('Personeller.meslek_id'), value: 'meslek_id',
+          type: 'uyruk', data: this.$route.params.personel.uyruk_id, text: this.$t('Personeller.uyruk_id'), value: 'uyruk_id',
         },
         {
-          type: 'uyruk', data: this.$route.params.uyruk_id, text: this.$t('Personeller.uyruk_id'), value: 'uyruk_id',
+          type: 'date', data: this.Tarih(this.$route.params.personel.ise_giris_tarihi), text: this.$t('Personeller.ise_giris_tarihi'), value: 'ise_giris_tarihi',
         },
         {
-          type: 'date', data: this.Tarih(this.$route.params.ise_giris_tarihi), text: this.$t('Personeller.ise_giris_tarihi'), value: 'ise_giris_tarihi',
+          type: 'ulke', data: this.$route.params.personel.ulke_id, text: this.$t('Personeller.ulke_id'), value: 'ulke_id',
         },
         {
-          type: 'ulke', data: this.$route.params.ulke_id, text: this.$t('Personeller.ulke_id'), value: 'ulke_id',
+          type: 'posta_kodu', data: this.$route.params.personel.posta_kodu_id, text: this.$t('Personeller.posta_kodu_ve_sehir'), value: 'posta_kodu_id',
         },
         {
-          type: 'posta_kodu', data: this.$route.params.posta_kodu_id, text: this.$t('Personeller.posta_kodu_ve_sehir'), value: 'posta_kodu_id',
+          type: 'text', data: this.$route.params.personel.cadde, text: this.$t('Personeller.cadde'), value: 'cadde',
         },
         {
-          type: 'text', data: this.$route.params.cadde, text: this.$t('Personeller.cadde'), value: 'cadde',
+          type: 'sigorta_sirketi', data: this.$route.params.personel.sigorta_sirketi_id, text: this.$t('Personeller.sigorta_sirketi_id'), value: 'sigorta_sirketi_id',
         },
         {
-          type: 'sigorta_sirketi', data: this.$route.params.sigorta_sirketi_id, text: this.$t('Personeller.sigorta_sirketi_id'), value: 'sigorta_sirketi_id',
+          type: 'text', data: this.$route.params.personel.kimlik_no, text: this.$t('Personeller.kimlik_no'), value: 'kimlik_no',
         },
         {
-          type: 'text', data: this.$route.params.kimlik_no, text: this.$t('Personeller.kimlik_no'), value: 'kimlik_no',
+          type: 'text', data: this.$route.params.personel.sosyal_guvenlik_no, text: this.$t('Personeller.sosyal_guvenlik_no'), value: 'sosyal_guvenlik_no',
         },
         {
-          type: 'text', data: this.$route.params.sosyal_guvenlik_no, text: this.$t('Personeller.sosyal_guvenlik_no'), value: 'sosyal_guvenlik_no',
+          type: 'text', data: this.$route.params.personel.kimlik_seri_no, text: this.$t('Personeller.kimlik_seri_no'), value: 'kimlik_seri_no',
         },
         {
-          type: 'text', data: this.$route.params.kimlik_seri_no, text: this.$t('Personeller.kimlik_seri_no'), value: 'kimlik_seri_no',
+          type: 'date', data: this.Tarih(this.$route.params.personel.kimlik_gecerlilik_tarihi), text: this.$t('Personeller.kimlik_gecerlilik_tarihi'), value: 'kimlik_gecerlilik_tarihi',
         },
         {
-          type: 'date', data: this.Tarih(this.$route.params.kimlik_gecerlilik_tarihi), text: this.$t('Personeller.kimlik_gecerlilik_tarihi'), value: 'kimlik_gecerlilik_tarihi',
+          type: 'text', data: this.$route.params.personel.pasaport_no, text: this.$t('Personeller.pasaport_no'), value: 'pasaport_no',
         },
         {
-          type: 'text', data: this.$route.params.pasaport_no, text: this.$t('Personeller.pasaport_no'), value: 'pasaport_no',
+          type: 'date', data: this.Tarih(this.$route.params.personel.pasaport_gecerlilik_tarihi), text: this.$t('Personeller.pasaport_gecerlilik_tarihi'), value: 'pasaport_gecerlilik_tarihi',
         },
         {
-          type: 'date', data: this.Tarih(this.$route.params.pasaport_gecerlilik_tarihi), text: this.$t('Personeller.pasaport_gecerlilik_tarihi'), value: 'pasaport_gecerlilik_tarihi',
+          type: 'text', data: this.$route.params.personel.oturum_izin_no, text: this.$t('Personeller.oturum_izin_no'), value: 'oturum_izin_no',
         },
         {
-          type: 'text', data: this.$route.params.oturum_izin_no, text: this.$t('Personeller.oturum_izin_no'), value: 'oturum_izin_no',
+          type: 'date', data: this.Tarih(this.$route.params.personel.oturum_izin_tarihi), text: this.$t('Personeller.oturum_izin_tarihi'), value: 'oturum_izin_tarihi',
         },
         {
-          type: 'date', data: this.Tarih(this.$route.params.oturum_izin_tarihi), text: this.$t('Personeller.oturum_izin_tarihi'), value: 'oturum_izin_tarihi',
-        },
-        {
-          type: 'text', data: this.$route.params.guvenlik_belgesi, text: this.$t('Personeller.guvenlik_belgesi'), value: 'guvenlik_belgesi',
+          type: 'text', data: this.$route.params.personel.guvenlik_belgesi, text: this.$t('Personeller.guvenlik_belgesi'), value: 'guvenlik_belgesi',
         },
       ]
     },

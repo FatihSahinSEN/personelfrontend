@@ -41,7 +41,7 @@
       <nav-menu-link
         :title="$t('menu.panel')"
         :to="{ name: 'dashboard' }"
-        :icon="icons.mdiHomeOutline"
+        :icon="icons.mdiDesktopMacDashboard"
       ></nav-menu-link>
       <!-- Dashboard SOn -->
       <!--      Personel Menüsü -->
@@ -49,16 +49,28 @@
       <nav-menu-link
         :title="$t('menu.personel')"
         :to="{ name: 'personel-listesi' }"
-        :icon="icons.mdiAccountSupervisor"
+        :icon="icons.mdiAccountHardHat"
+      ></nav-menu-link>
+
+      <nav-menu-link
+        :title="$t('menu.sozlesmeler')"
+        :to="{ name: 'sozlesmeler' }"
+        :icon="icons.mdiFileSign"
       ></nav-menu-link>
 
       <!--      Dosyalar Menüsü Gizli -->
 
       <nav-menu-link
+        v-if="$route.name === 'dosyalar'"
         :title="$t('menu.dosyalar')"
         :to="{ name: 'dosyalar' }"
         :icon="icons.mdiAccountSupervisor"
-        v-if="$route.name === 'dosyalar'"
+      ></nav-menu-link>
+
+      <nav-menu-link
+        :title="$t('menu.dosyalar')"
+        :to="{ name: 'dosyalar-listesi' }"
+        :icon="icons.mdiFileMultiple"
       ></nav-menu-link>
       <!--      Kullanıcılar Menüsü-->
 
@@ -77,26 +89,32 @@
         <nav-menu-link
           :title="$t('menu.tanimlar.ulkeler')"
           :to="{ name: 'ulkeler' }"
+          :icon="icons.mdiMapCheck"
         ></nav-menu-link>
         <nav-menu-link
           :title="$t('menu.tanimlar.sehirler')"
           :to="{ name: 'sehirler' }"
+          :icon="icons.mdiMapMarkerRadius"
         ></nav-menu-link>
         <nav-menu-link
           :title="$t('menu.tanimlar.sigorta_sirketleri')"
           :to="{ name: 'sigorta-sirketleri' }"
+          :icon="icons.mdiHandshake"
         ></nav-menu-link>
         <nav-menu-link
           :title="$t('menu.tanimlar.evrak_tipleri')"
           :to="{ name: 'evrak' }"
+          :icon="icons.mdiFileFind"
         ></nav-menu-link>
         <nav-menu-link
           :title="$t('menu.tanimlar.meslek')"
           :to="{ name: 'meslek' }"
+          :icon="icons.mdiCardAccountDetails"
         ></nav-menu-link>
         <nav-menu-link
           :title="$t('menu.tanimlar.uyruklar')"
           :to="{ name: 'uyruklar' }"
+          :icon="icons.mdiAccountDetails"
         ></nav-menu-link>
       </nav-menu-group>
       <!--      Tanımlar Son -->
@@ -170,16 +188,18 @@
 <script>
 // eslint-disable-next-line object-curly-newline
 import {
-  mdiHomeOutline,
-  mdiAlphaTBoxOutline,
-  mdiEyeOutline,
-  mdiCreditCardOutline,
-  mdiTable,
-  mdiFileOutline,
-  mdiFormSelect,
-  mdiAccountCogOutline,
+  mdiDesktopMacDashboard,
   mdiAccountSupervisor,
   mdiDotsHorizontalCircle,
+  mdiFileMultiple,
+  mdiFileSign,
+  mdiAccountHardHat,
+  mdiMapCheck,
+  mdiAccountDetails,
+  mdiCardAccountDetails,
+  mdiFileFind,
+  mdiHandshake,
+  mdiMapMarkerRadius,
 } from '@mdi/js'
 import NavMenuSectionTitle from './components/NavMenuSectionTitle.vue'
 import NavMenuGroup from './components/NavMenuGroup.vue'
@@ -200,16 +220,18 @@ export default {
   setup() {
     return {
       icons: {
-        mdiHomeOutline,
-        mdiAlphaTBoxOutline,
-        mdiEyeOutline,
-        mdiCreditCardOutline,
-        mdiTable,
-        mdiFileOutline,
-        mdiFormSelect,
-        mdiAccountCogOutline,
-        mdiAccountSupervisor,
+        mdiDesktopMacDashboard,
+        mdiAccountDetails,
+        mdiCardAccountDetails,
+        mdiFileFind,
+        mdiHandshake,
+        mdiMapMarkerRadius,
+        mdiMapCheck,
+        mdiFileMultiple,
+        mdiFileSign,
         mdiDotsHorizontalCircle,
+        mdiAccountSupervisor,
+        mdiAccountHardHat,
       },
     }
   },

@@ -11,7 +11,7 @@
             item-text="meslek"
             dense
             :label="(index+1) + '. ' + s.text"
-            class="col-3"
+            class="col-3 col-md-6 col-sm-12"
             v-if="s.type === 'meslek'"
             :search-input.sync="MeslekSearch"
             @keypress.enter="MeslekEkle"
@@ -24,7 +24,7 @@
             item-text="uyruk"
             dense
             :label="(index+1) + '. ' + s.text"
-            class="col-3"
+            class="col-3 col-md-6 col-sm-12"
             :search-input.sync="UyrukSearch"
             @keypress.enter="UyrukEkle"
             v-else-if="s.type === 'uyruk'"
@@ -36,7 +36,7 @@
             item-text="de"
             dense
             :label="(index+1) + '. ' + s.text"
-            class="col-3"
+            class="col-3 col-md-6 col-sm-12"
             v-else-if="s.type === 'ulke'"
           ></v-autocomplete>
           <v-autocomplete
@@ -48,7 +48,7 @@
             dense
             :label="(index+1) + '. ' + s.text"
             v-else-if="s.type === 'posta_kodu'"
-            class="col-3"
+            class="col-3 col-md-6 col-sm-12"
           ></v-autocomplete>
           <v-autocomplete
             v-model="s.data"
@@ -61,14 +61,14 @@
             :search-input.sync="SigortaSirketiSearch"
             @keypress.enter="SigortaSirketiEkle"
             v-else-if="s.type === 'sigorta_sirketi'"
-            class="col-3"
+            class="col-3 col-md-6 col-sm-12"
           ></v-autocomplete>
 
           <v-text-field
             v-model="s.data"
             :type="s.type"
             :label="(index+1) + '. ' + s.text"
-            class="col-3"
+            class="col-3 col-md-6 col-sm-12"
             v-else
             dense
           ></v-text-field>

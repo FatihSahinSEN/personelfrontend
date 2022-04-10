@@ -46,6 +46,26 @@ const routes = [
     },
   },
   {
+    path: '/sozlesmeler',
+    name: 'sozlesmeler',
+    component: () => import('@/views/sozlesmeler/sozlesmeler.vue'),
+    meta: {
+      role: '1',
+      UstMenuYeni: true,
+    },
+  },
+
+  {
+    path: '/sozlesme/:id',
+    name: 'sozlesme_print',
+    component: () => import('@/views/sozlesmeler/sozlesme-print.vue'),
+    meta: {
+      layout: 'print',
+      role: '1',
+      UstMenuYeni: true,
+    },
+  },
+  {
     path: '/evrak-tipleri',
     name: 'evrak',
     component: () => import('@/views/evrak-tipleri/evrak-tipleri.vue'),
@@ -83,6 +103,14 @@ const routes = [
     path: '/dosyalar/:id',
     name: 'dosyalar',
     component: () => import('@/views/dosyalar/dosyalar.vue'),
+    meta: {
+      role: '1',
+    },
+  },
+  {
+    path: '/dosyalar-listesi',
+    name: 'dosyalar-listesi',
+    component: () => import('@/views/dosyalar/dosyalar-listesi.vue'),
     meta: {
       role: '1',
     },

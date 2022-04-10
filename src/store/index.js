@@ -17,6 +17,8 @@ import meslek_gruplari from '@/store/meslek_gruplari'
 import uyruklar from '@/store/uyruklar'
 import personeller from '@/store/personeller'
 import dosyalar from '@/store/dosyalar'
+import sozlesmeler from '@/store/sozlesmeler'
+import firmalar from '@/store/firmalar'
 import i18n from '@/locale'
 
 Vue.use(Vuex)
@@ -193,7 +195,9 @@ const Store = new Vuex.Store({
     MeslekGruplari: meslek_gruplari,
     Uyruklar: uyruklar,
     Personeller: personeller,
-    Dosyalar: dosyalar
+    Dosyalar: dosyalar,
+    Sozlesmeler: sozlesmeler,
+    Firmalar: firmalar,
   },
 
 })

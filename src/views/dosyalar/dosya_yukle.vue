@@ -20,6 +20,16 @@
         autofocus
         @keypress.enter="EvrakTipleriEkle"
       ></v-autocomplete>
+
+      <v-text-field
+        v-model="bitis_tarihi"
+        type="date"
+        chips
+        show-size
+        truncate-length="15"
+        :label="$t('Dosyalar.bitis_tarihi')"
+      ></v-text-field>
+
       <v-file-input
         v-model="file"
         chips
@@ -27,6 +37,8 @@
         truncate-length="15"
         :label="$t('Dosyalar.belge')"
       ></v-file-input>
+      
+
     </template>
   </Modal>
 </template>
@@ -49,6 +61,7 @@ export default {
     EvrakTipleriSearch: '',
     evrak_tip_id: 0,
     file: null,
+    bitis_tarihi: '',
   }),
   computed: {
     Ekle: {
@@ -84,6 +97,7 @@ export default {
       uploadData.append('personel_no', this.$route.params.id)
       uploadData.append('evrak_tip_id', this.evrak_tip_id)
       uploadData.append('files', this.file)
+      uploadData.append('bitis_tarihi', this.bitis_tarihi)
       api({
         method: 'post',
         url: 'dosyalar',

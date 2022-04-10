@@ -7,12 +7,21 @@
     @saveMethod="Olustur"
   >
     <template v-slot:form>
+        <v-autocomplete
+            v-model="data.grup"
+            :items="evrak_gurubu"
+            item-value="name"
+            item-text="name"
+            dense
+            :label="$t('EvrakTipleri.evrak_gurubu')"
+            class="mt-4"
+            autofocus
+          ></v-autocomplete>
+
       <v-text-field
         v-model="data.isim"
         :label="$t('EvrakTipleri.isim')"
-        class="mt-4"
         required
-        autofocus
       ></v-text-field>
       <v-text-field
         v-model="data.aciklama"
@@ -34,8 +43,16 @@ export default {
   data: () => ({
     data: {
       isim: '',
+      grup: '',
       aciklama: '',
     },
+    evrak_gurubu: [
+          {name: 'Personaldaten'},
+          {name: 'Qualifikation'},
+          {name: 'Übernachtung'},
+          {name: 'Überlassung'},
+          {name: 'Arbeitsmedizin'},
+      ],
     icons: {
       mdiWindowClose,
     },
@@ -52,7 +69,7 @@ export default {
   },
   methods: {
     Olustur() {
-      this.$store.dispatch('Action', { name: 'EvrakTipleri/EvrakOlustur', data: this.data }).then(() => {
+      this.$store.dispatch('Action', { name: 'EvrakTipleri/EvrakTipleriOlustur', data: this.data }).then(() => {
         this.Ekle = false
         this.data = {
           isim: '',

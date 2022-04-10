@@ -11,6 +11,7 @@
 <script>
 import LayoutBlank from '@/layouts/Blank.vue'
 import LayoutContent from '@/layouts/Content.vue'
+import print from '@/layouts/print.vue'
 import alert from '@/components/alert.vue'
 import loading from '@/components/loading.vue'
 
@@ -18,6 +19,7 @@ export default {
   components: {
     LayoutBlank,
     LayoutContent,
+    print,
     alert,
     loading,
   },
@@ -25,6 +27,7 @@ export default {
     resolveLayout() {
       if (this.$route.name === null) return null
       if (this.$route.meta.layout === 'blank') return 'layout-blank'
+      if (this.$route.meta.layout === 'print') return 'print'
 
       return 'layout-content'
     },

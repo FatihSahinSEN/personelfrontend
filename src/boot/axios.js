@@ -65,7 +65,7 @@ function Alert(response) {
 }
 
 const api = axios.create({
-  baseURL: i18n.$t('BACKEND_URL'),
+  baseURL: 'http://localhost:8080/',
   headers: {
     Accept: 'json/application',
     'Content-Type': 'json/application',

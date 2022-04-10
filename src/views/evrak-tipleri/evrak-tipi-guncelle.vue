@@ -23,10 +23,18 @@
         </v-toolbar>
 
         <v-card-text>
+          <v-autocomplete
+            v-model="data.grup"
+            :items="evrak_gurubu"
+            item-value="name"
+            item-text="name"
+            dense
+            :label="$t('EvrakTipleri.evrak_gurubu')"
+            class="mt-4"
+          ></v-autocomplete>
           <v-text-field
             v-model="data.isim"
             :label="$t('EvrakTipleri.isim')"
-            class="mt-4"
             required
             autofocus
           ></v-text-field>
@@ -64,8 +72,16 @@ export default {
     data: {
       id: '',
       isim: '',
+      grup: '',
       aciklama: '',
     },
+        evrak_gurubu: [
+          {name: 'Personaldaten'},
+          {name: 'Qualifikation'},
+          {name: 'Übernachtung'},
+          {name: 'Überlassung'},
+          {name: 'Arbeitsmedizin'},
+      ],
     icons: {
       mdiWindowClose,
     },

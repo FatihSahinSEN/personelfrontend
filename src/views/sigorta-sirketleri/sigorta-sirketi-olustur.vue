@@ -45,8 +45,7 @@ export default {
     },
   },
   methods: {
-    Olustur(event) {
-      event.preventDefault()
+    Olustur() {
       this.$store.dispatch('Action', { name: 'SigortaSirketleri/SigortaSirketleriOlustur', data: this.data }).then(() => {
         this.Ekle = false
         this.data = {

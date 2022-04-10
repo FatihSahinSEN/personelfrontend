@@ -80,7 +80,7 @@
             {{ icons.mdiCogOutline }}
           </v-icon>
         </v-list-item-icon>
-        <v-list-item-content>
+        <v-list-item-content @click="accountEdit">
           <v-list-item-title>{{ $t('layout.ayarlar') }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -144,6 +144,10 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('Auth/Logout')
+    },
+    accountEdit() {
+      const user = this.$store.state.user
+      this.$router.push({ name: 'kullanici-guncelle', params: { id: user.id, user, cancel: false } })
     },
   },
 }

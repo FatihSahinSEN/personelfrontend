@@ -190,7 +190,11 @@ export default {
   },
   methods: {
     Cancel() {
-      this.$router.push({ name: 'kullanicilar' })
+      if (this.$route.params.cancel) {
+        this.$router.push({ name: 'kullanicilar' })
+      } else {
+        this.$router.push({ name: 'dashboard' })
+      }
     },
     SaveUser() {
       const user = {}

@@ -33,6 +33,15 @@ export default {
         // eslint-disable-next-line consistent-return
       })
     },
+    
+    TumDosyalar({ commit }, data) {
+      commit('DosyalarTanimla', [])
+      // eslint-disable-next-line consistent-return
+      api.get(`dosyalar`).then(response => {
+        if (response?.data?.result) commit('DosyalarTanimla', response?.data?.result)
+        // eslint-disable-next-line consistent-return
+      })
+    },
 
     // eslint-disable-next-line no-empty-pattern
     DosyalarGuncelle({ }, data) {
